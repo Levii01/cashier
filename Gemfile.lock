@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
+    benchmark (0.4.1)
     diff-lcs (1.6.2)
     json (2.7.2)
     language_server-protocol (3.17.0.5)
@@ -52,6 +53,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  benchmark
   rspec
   rubocop
   rubocop-performance
