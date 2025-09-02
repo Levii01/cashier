@@ -9,6 +9,7 @@ require_relative 'lib/basket_item'
 require_relative 'lib/pricing_rules/bulk_discount_rule'
 require_relative 'lib/pricing_rules/bulk_percentage_rule'
 require_relative 'lib/pricing_rules/buy_one_get_one_free_rule'
+require_relative 'lib/errors/validation_error'
 
 PRODUCTS_FILE = File.expand_path('./config/products.yml', __dir__)
 
