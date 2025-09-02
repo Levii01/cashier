@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Basket do
-  let(:basket) { Basket.new }
+  let(:basket) { described_class.new }
   let(:product_tea) { Product.new(code: 'GR1', name: 'Green Tea', price: 3.11) }
   let(:product_fruit) { Product.new(code: 'SR1', name: 'Strawberries', price: 5.00) }
 
@@ -61,7 +61,7 @@ RSpec.describe Basket do
   end
 
   describe '#empty?' do
-    context 'whent basket is empty' do
+    context 'when basket is empty' do
       it { expect(basket.empty?).to be true }
     end
 
