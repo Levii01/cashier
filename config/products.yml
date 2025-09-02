@@ -1,0 +1,10 @@
+# Prices are quoted in pence! If you want to convert to pounds, divide by 100
+GR1:
+  name: Green tea
+  price: 311
+SR1:
+  name: Strawberries
+  price: 500
+CF1:
+  name: Coffee
+  price: 1123
