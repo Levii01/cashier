@@ -8,3 +8,7 @@ AllCops:
   DisabledByDefault: false
   NewCops: enable
   TargetRubyVersion: 3.4.5
+
+RSpec/MultipleExpectations: # aggregate_failures: true
+  Exclude:
+    - 'spec/**/*'

@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 group :development do
   gem 'benchmark' # for rubocop-performance
+  gem 'pry'
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rspec'
