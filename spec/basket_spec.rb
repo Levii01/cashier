@@ -16,8 +16,7 @@ RSpec.describe Basket do
       it 'adds a product to the basket' do
         add
         expect(basket.items.size).to eq(1)
-        expect(basket.items.first.product).to eq(product_tea)
-        expect(basket.items.first.quantity).to eq(1)
+        expect(basket.items[product_tea.code]).to have_attributes(product: product_tea, quantity: 1)
       end
     end
 
@@ -27,7 +26,7 @@ RSpec.describe Basket do
       it 'increments quantity if same product is added again' do
         add
         expect(basket.items.size).to eq(1)
-        expect(basket.items.first.quantity).to eq(2)
+        expect(basket.items[product_tea.code]).to have_attributes(product: product_tea, quantity: 2)
       end
     end
 
@@ -37,12 +36,13 @@ RSpec.describe Basket do
       it 'adds different products as separate BasketItems' do
         add
         expect(basket.items.size).to eq(2)
-        expect(basket.items.map(&:product)).to include(product_tea, product_fruit)
+        expect(basket.items[product_tea.code]).to have_attributes(product: product_tea, quantity: 1)
+        expect(basket.items[product_fruit.code]).to have_attributes(product: product_fruit, quantity: 1)
       end
     end
 
-    it 'raises an error if product is nil' do
-      expect { basket.add(nil) }.to raise_error(ArgumentError, 'Product cannot be nil')
+    it 'raises a validation error if product is nil' do
+      expect { basket.add(nil) }.to raise_error(ValidationError, 'Validation failed: Product must be provided')
     end
   end
 
@@ -55,8 +55,8 @@ RSpec.describe Basket do
     end
 
     it 'returns all basket items' do
-      expect(items.map(&:product)).to include(gr1, sr1)
-      expect(items.map(&:quantity)).to eq([1, 1])
+      expect(items.values.map(&:product)).to include(product_fruit, product_tea)
+      expect(items.values.map(&:quantity)).to eq([1, 1])
     end
   end
 
