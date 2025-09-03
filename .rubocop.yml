@@ -12,3 +12,6 @@ AllCops:
 RSpec/MultipleExpectations: # aggregate_failures: true
   Exclude:
     - 'spec/**/*'
+
+Style/Documentation:
+  Enabled: false
