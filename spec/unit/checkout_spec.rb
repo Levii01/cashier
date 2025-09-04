@@ -19,6 +19,14 @@ RSpec.describe Checkout do
   describe '#scan' do
     let(:product) { instance_double(Product) }
 
+    before do
+      allow(product).to receive_messages(
+        price_to_s: '$4.50',
+        code: 'SR1',
+        name: 'Strawberries'
+      )
+    end
+
     it 'delegates adding a product to basket' do
       allow(basket).to receive(:add)
       checkout.scan(product)
@@ -27,7 +35,7 @@ RSpec.describe Checkout do
   end
 
   describe '#calculete_total' do
-    subject(:calculated) { checkout.calculete_total }
+    subject(:calculete_total) { checkout.calculete_total }
 
     let(:basket_item) { instance_double(BasketItem) }
     let(:items) { { 'X' => basket_item } }
@@ -45,25 +53,21 @@ RSpec.describe Checkout do
     end
 
     it 'resets discounts on basket items' do
-      calculated
+      calculete_total
       expect(basket_item).to have_received(:reset_discount)
     end
 
     it 'applies rules that match the basket item' do
-      calculated
+      calculete_total
       expect(pricing_rule).to have_received(:applies_to?).with(basket_item)
       expect(pricing_rule).to have_received(:apply).with(basket_item)
     end
 
     it 'updates subtotal, discount and total' do
-      calculated
+      calculete_total
       expect(checkout.subtotal).to eq(1000)
       expect(checkout.total).to eq(800)
       expect(checkout.discount).to eq(200)
-    end
-
-    it 'returns true' do
-      expect(calculated).to be(true)
     end
   end
 

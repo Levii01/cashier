@@ -6,6 +6,7 @@ require_relative 'lib/checkout'
 require_relative 'lib/product'
 require_relative 'lib/basket'
 require_relative 'lib/basket_item'
+require_relative 'lib/event'
 require_relative 'lib/pricing_rules/fetch_rules'
 require_relative 'lib/errors/validation_error'
 

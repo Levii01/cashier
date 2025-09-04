@@ -17,6 +17,7 @@ class Basket
       @items[product.code].increment
     else
       @items[product.code] = BasketItem.new(product:)
+      Event.new(:basket_item_added, { code: product.code, quantity: 1 })
     end
   end
 

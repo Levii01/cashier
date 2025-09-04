@@ -1,3 +1,5 @@
+log/cashier.log
+
 *.gem
 *.rbc
 /.config

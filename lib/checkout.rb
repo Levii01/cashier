@@ -11,10 +11,14 @@ class Checkout
     @subtotal = 0
     @discount = 0
     @total = 0
+    Event.new(:new_checkout_session, { checkout: to_s, pricing_rules: })
   end
 
   def scan(product)
+    Event.new(:product_scanned, { code: product&.code, name: product&.name, price: product&.price_to_s })
     basket.add(product)
+
+    true
   end
 
   def calculete_total
@@ -23,7 +27,9 @@ class Checkout
     @total = basket.items_discounted_price
     @discount = (@subtotal - @total)
 
-    true
+    Event.new(:checkout_calculated, { subtotal:, discount:, total: })
+
+    print
   end
 
   def print
