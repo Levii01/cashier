@@ -9,4 +9,8 @@ class Product
     @price = price
     @name = name
   end
+
+  def price_to_s
+    "£#{price / 100.0}"
+  end
 end

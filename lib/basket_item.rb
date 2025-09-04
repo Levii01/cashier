@@ -22,11 +22,14 @@ class BasketItem
 
   def increment
     @quantity += 1
+    Event.new(:basket_item_quantity_changed, { code: product.code, quantity: })
   end
 
   def set_discount(new_discount, new_pricing_rule)
     return unless new_discount > @discount
 
+    Event.new(:discount_applied,
+              { code: product.code, old_discount: @discount, new_discount:, rule: new_pricing_rule.class.name })
     @discount = new_discount
     @pricing_rule = new_pricing_rule
   end

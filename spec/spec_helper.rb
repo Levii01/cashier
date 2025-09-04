@@ -16,6 +16,7 @@
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+ENV['ENVIROMENT'] ||= 'test'
 require_relative '../base'
 
 RSpec.configure do |config|
