@@ -2,8 +2,8 @@
 
 RSpec.describe Basket do
   let(:basket) { described_class.new }
-  let(:product_tea) { Product.new(code: 'GR1', name: 'Green Tea', price: 3.11) }
-  let(:product_fruit) { Product.new(code: 'SR1', name: 'Strawberries', price: 5.00) }
+  let(:product_tea) { Product.new(code: 'GR1', name: 'Green Tea', price: 311) }
+  let(:product_fruit) { Product.new(code: 'SR1', name: 'Strawberries', price: 500) }
 
   describe '#initialize' do
     it { expect(basket).to have_attributes(items: {}) }
@@ -69,6 +69,49 @@ RSpec.describe Basket do
       before { basket.add(product_tea) }
 
       it { expect(basket.empty?).to be false }
+    end
+  end
+
+  describe '#items_total_price' do
+    subject(:total_price) { basket.items_total_price }
+
+    context 'with multiple items' do
+      before do
+        basket.add(product_tea)
+        basket.add(product_fruit)
+      end
+
+      it 'returns the sum of total prices of all basket items' do
+        expect(total_price).to eq(311 + 500)
+      end
+    end
+
+    context 'with multiple quantities of same product' do
+      before do
+        3.times { basket.add(product_tea) } # 3 * 311 = 933
+        basket.add(product_fruit) # 500
+      end
+
+      it 'calculates total price correctly considering quantity' do
+        expect(total_price).to eq(933 + 500)
+      end
+    end
+  end
+
+  describe '#items_discounted_price' do
+    subject(:discounted_price) { basket.items_discounted_price }
+
+    before do
+      basket.add(product_tea)
+      basket.add(product_fruit)
+
+      # dodajemy ręcznie zniżkę, żeby przetestować sumowanie
+      basket.items[product_tea.code].set_discount(100, instance_double(PricingRules::BulkDiscountRule))
+      basket.items[product_fruit.code].set_discount(200, instance_double(PricingRules::BulkDiscountRule))
+    end
+
+    it 'returns the sum of discounted prices of all basket items' do
+      expect(discounted_price).to eq(211 + 300)
     end
   end
 end

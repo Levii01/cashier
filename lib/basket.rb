@@ -3,7 +3,6 @@
 require_relative 'basket_item'
 require_relative 'errors/validation_error'
 
-# Holds items added by the customer and manages quantities.
 class Basket
   attr_reader :items
 
@@ -19,6 +18,14 @@ class Basket
     else
       @items[product.code] = BasketItem.new(product:)
     end
+  end
+
+  def items_total_price
+    items.values.sum(&:total_price)
+  end
+
+  def items_discounted_price
+    items.values.sum(&:discounted_price)
   end
 
   def empty?
