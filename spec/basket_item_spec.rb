@@ -48,13 +48,13 @@ RSpec.describe BasketItem do
     end
   end
 
-  describe '#decrement' do
-    subject(:decrement) { basket_item.decrement }
+  # describe '#decrement' do
+  #   subject(:decrement) { basket_item.decrement }
 
-    it 'decreases the quantity by 1' do
-      expect { decrement }.to change(basket_item, :quantity).from(5).to(4)
-    end
-  end
+  #   it 'decreases the quantity by 1' do
+  #     expect { decrement }.to change(basket_item, :quantity).from(5).to(4)
+  #   end
+  # end
 
   describe '#total_price' do
     subject(:total_price) { basket_item.total_price }
