@@ -1,0 +1,13 @@
+promotions:
+  - type: buy_one_get_one_free
+    product_code: GR1
+
+  - type: bulk_discount
+    product_code: SR1
+    threshold: 3
+    new_price: 450
+
+  - type: bulk_percentage
+    product_code: CF1
+    threshold: 3
+    percentage: 0.3333333333333333   # 1.0 / 3
