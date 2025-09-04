@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../lib/product'
-
 RSpec.describe Product do
   subject(:product) { described_class.new(code: 'CF1', price: 1123, name: 'Coffee') }
 
