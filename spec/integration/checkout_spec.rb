@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Checkout do
+RSpec.describe Checkout, type: :integration do
   subject(:calculete_total) { checkout.calculete_total }
 
   let(:checkout) { described_class.new(PRICING_RULES) }
