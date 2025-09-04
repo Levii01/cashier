@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../../lib/errors/validation_error'
-
 RSpec.describe ValidationError do
   describe '#initialize' do
     it 'stores provided errors array' do

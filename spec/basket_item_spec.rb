@@ -2,7 +2,7 @@
 
 RSpec.describe BasketItem do
   let(:basket_item) { described_class.new(product:, quantity:) }
-  let(:product) { Product.new(code: 'GR1', price: 3.11, name: 'Green Tea') }
+  let(:product) { Product.new(code: 'GR1', price: 311, name: 'Green Tea') }
   let(:quantity) { 5 }
 
   describe '#initialize' do
@@ -60,7 +60,7 @@ RSpec.describe BasketItem do
     subject(:total_price) { basket_item.total_price }
 
     it 'calculates total price correctly' do
-      expect(total_price).to eq(3.11 * 5)
+      expect(total_price).to eq(1555)
     end
   end
 end

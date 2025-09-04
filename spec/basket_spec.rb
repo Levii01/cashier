@@ -82,18 +82,18 @@ RSpec.describe Basket do
       end
 
       it 'returns the sum of total prices of all basket items' do
-        expect(total_price).to eq(311 + 500)
+        expect(total_price).to eq(811)
       end
     end
 
     context 'with multiple quantities of same product' do
       before do
-        3.times { basket.add(product_tea) } # 3 * 311 = 933
-        basket.add(product_fruit) # 500
+        3.times { basket.add(product_tea) }
+        basket.add(product_fruit)
       end
 
       it 'calculates total price correctly considering quantity' do
-        expect(total_price).to eq(933 + 500)
+        expect(total_price).to eq(1433)
       end
     end
   end
@@ -105,13 +105,12 @@ RSpec.describe Basket do
       basket.add(product_tea)
       basket.add(product_fruit)
 
-      # dodajemy ręcznie zniżkę, żeby przetestować sumowanie
       basket.items[product_tea.code].set_discount(100, instance_double(PricingRules::BulkDiscountRule))
       basket.items[product_fruit.code].set_discount(200, instance_double(PricingRules::BulkDiscountRule))
     end
 
     it 'returns the sum of discounted prices of all basket items' do
-      expect(discounted_price).to eq(211 + 300)
+      expect(discounted_price).to eq(511)
     end
   end
 end
