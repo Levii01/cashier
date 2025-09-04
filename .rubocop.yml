@@ -15,3 +15,6 @@ RSpec/MultipleExpectations: # aggregate_failures: true
 
 Style/Documentation:
   Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
