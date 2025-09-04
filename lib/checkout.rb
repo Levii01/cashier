@@ -29,10 +29,10 @@ class Checkout
 
     Event.new(:checkout_calculated, { subtotal:, discount:, total: })
 
-    print
+    summary if ENV['ENVIROMENT'] != 'test'
   end
 
-  def print
+  def summary
     puts "Subtotal: £#{subtotal / 100.0}"
     puts "Discount: £#{discount / 100.0}"
     puts "Total:    £#{total / 100.0}"

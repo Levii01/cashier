@@ -2,6 +2,7 @@
 
 require 'yaml'
 
+require_relative 'config/enviroment'
 require_relative 'lib/checkout'
 require_relative 'lib/product'
 require_relative 'lib/basket'

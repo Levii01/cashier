@@ -71,7 +71,7 @@ RSpec.describe Checkout do
     end
   end
 
-  describe '#print' do
+  describe '#summary' do
     before do
       checkout.instance_variable_set(:@subtotal, 2000)
       checkout.instance_variable_set(:@discount, 500)
@@ -79,7 +79,7 @@ RSpec.describe Checkout do
     end
 
     it 'prints formatted output' do
-      expect { checkout.print }.to output(
+      expect { checkout.summary }.to output(
         "Subtotal: £20.0\nDiscount: £5.0\nTotal:    £15.0\n"
       ).to_stdout
     end

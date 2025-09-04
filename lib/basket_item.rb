@@ -39,11 +39,11 @@ class BasketItem
     @pricing_rule = nil
   end
 
-  def decrement
-    raise StandardError, "Cannot decrement when quantity #{@quantity}" if @quantity < 1
+  # def decrement
+  #   raise StandardError, "Cannot decrement when quantity #{@quantity}" if @quantity < 1
 
-    @quantity -= 1
-  end
+  #   @quantity -= 1
+  # end
 
   private
 
